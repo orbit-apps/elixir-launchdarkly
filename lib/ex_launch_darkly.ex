@@ -3,7 +3,7 @@ defmodule ExLaunchDarkly do
   Documentation for ExLaunchDarkly.
   """
 
-  import ExLaunchDarkly.App
+  import ExLaunchDarkly.App, only: :functions
 
   alias ExLaunchDarkly.User
 
