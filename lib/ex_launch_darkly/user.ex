@@ -31,6 +31,6 @@ defmodule ExLaunchDarkly.User do
   def set_private_attribute_names(user, attribute_names),
     do: :eld_user.set_private_attribute_names(attribute_names, user)
 
-  @spec scrub(t(), list(attribute())) :: {t(), list(attribute())}
+  @spec scrub(t(), list(attribute()) | :all) :: {t(), list(attribute())}
   def scrub(user, attribute_names), do: :eld_user.scrub(user, attribute_names)
 end
