@@ -1,7 +1,7 @@
 defmodule ExLaunchDarkly.MixProject do
   use Mix.Project
 
-  @version "0.0.2"
+  @version "0.0.3"
 
   def project do
     [
@@ -27,7 +27,8 @@ defmodule ExLaunchDarkly.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
       # Everything else
-      {:eld, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-alpha2"}
+      # TODO Change this back to the correct source when LD fixes their bug
+      {:eld, github: "hez/erlang-server-sdk", branch: "fix/eld-all_flags_state"}
     ]
   end
 end
