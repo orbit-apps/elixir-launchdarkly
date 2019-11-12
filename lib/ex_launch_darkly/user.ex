@@ -18,7 +18,7 @@ defmodule ExLaunchDarkly.User do
   @spec new(String.t()) :: t()
   def new(key), do: :eld_user.new(key)
 
-  @spec new_from_map(t()) :: t()
+  @spec new_from_map(map()) :: t()
   def new_from_map(user_attributes), do: :eld_user.new_from_map(user_attributes)
 
   @spec get(t(), attribute()) :: t()
