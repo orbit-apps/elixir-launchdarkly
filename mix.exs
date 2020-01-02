@@ -1,7 +1,7 @@
 defmodule ExLaunchDarkly.MixProject do
   use Mix.Project
 
-  @version "0.0.5"
+  @version "0.0.6"
 
   def project do
     [
@@ -27,7 +27,7 @@ defmodule ExLaunchDarkly.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
       # Everything else
-      {:eld, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-alpha3"}
+      {:eld, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-alpha4"}
     ]
   end
 end
