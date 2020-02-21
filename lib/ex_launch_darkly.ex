@@ -7,18 +7,19 @@ defmodule ExLaunchDarkly do
 
   alias ExLaunchDarkly.User
 
-  @type result_value() :: :eld_eval.result_value()
+  @type result_value() :: :ldclient_eval.result_value()
 
   @spec variation(String.t(), User.t(), result_value()) :: result_value()
-  def variation(flag_key, user, default_value), do: :eld.variation(flag_key, user, default_value)
+  def variation(flag_key, user, default_value),
+    do: :ldclient.variation(flag_key, user, default_value)
 
   @spec variation(String.t(), User.t(), result_value(), atom()) :: result_value()
   def variation(flag_key, user, default_value, tag),
-    do: :eld.variation(flag_key, user, default_value, tag)
+    do: :ldclient.variation(flag_key, user, default_value, tag)
 
   @spec all_flags_state(User.t()) :: map()
-  def all_flags_state(user), do: :eld.all_flags_state(user)
+  def all_flags_state(user), do: :ldclient.all_flags_state(user)
 
   @spec all_flags_state(User.t(), atom()) :: map()
-  def all_flags_state(user, tag), do: :eld.all_flags_state(user, tag)
+  def all_flags_state(user, tag), do: :ldclient.all_flags_state(user, tag)
 end
