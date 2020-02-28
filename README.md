@@ -7,7 +7,7 @@ A quick Elixir wrapper around the official LaunchDarkly [Erlang library](https:/
 ```elixir
 def deps do
   [
-    {:ex_launch_darkly, github: "pixelunion/elixir-launchdarkly", tag: "v0.0.7"}
+    {:ex_launch_darkly, github: "pixelunion/elixir-launchdarkly", tag: "v0.0.8"}
   ]
 end
 ```
