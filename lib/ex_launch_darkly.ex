@@ -22,4 +22,10 @@ defmodule ExLaunchDarkly do
 
   @spec all_flags_state(User.t(), atom()) :: map()
   def all_flags_state(user, tag), do: :ldclient.all_flags_state(user, tag)
+
+  @spec identify(User.t()) :: :ok
+  def identify(user), do: :ldclient.identify(user)
+
+  @spec identify(User.t(), atom()) :: :ok
+  def identify(user, tag), do: :ldclient.identify(user, tag)
 end

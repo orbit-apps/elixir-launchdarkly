@@ -7,7 +7,7 @@ A quick Elixir wrapper around the official LaunchDarkly [Erlang library](https:/
 ```elixir
 def deps do
   [
-    {:ex_launch_darkly, github: "pixelunion/exlixir-launch-darkly", tag: "v0.0.1"}
+    {:ex_launch_darkly, github: "pixelunion/elixir-launchdarkly", tag: "v0.0.7"}
   ]
 end
 ```
@@ -17,7 +17,7 @@ end
 Start your connection to LaunchDarkly on Application start.
 
 ```elixir
-ExLaunchDarkly.start(application.fetch_env!(:your_application, :launchdarkly_api_key)
+ExLaunchDarkly.App.start(application.fetch_env!(:your_application, :launchdarkly_api_key))
 ```
 
 Retrieve a variation.
