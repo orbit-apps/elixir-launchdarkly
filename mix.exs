@@ -31,7 +31,7 @@ defmodule ExLaunchDarkly.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0.0", only: [:dev, :test], runtime: false},
       # Everything else
-      {:ldclient, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-beta2"}
+      {:ldclient, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-beta4"}
     ]
   end
 end
