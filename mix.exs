@@ -1,7 +1,7 @@
 defmodule ExLaunchDarkly.MixProject do
   use Mix.Project
 
-  @version "0.0.7"
+  @version "0.0.8"
 
   def project do
     [
@@ -11,8 +11,7 @@ defmodule ExLaunchDarkly.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [
-        plt_add_deps: :transitive,
-        plt_add_apps: [:mix],
+        plt_add_apps: [:mix, :ex_unit],
         plt_file: {:no_warn, "priv/plts/dialyzer.plt"}
       ]
     ]
@@ -30,9 +29,9 @@ defmodule ExLaunchDarkly.MixProject do
     [
       # Dev and Test
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.4", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.0.0", only: [:dev, :test], runtime: false},
       # Everything else
-      {:ldclient, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-beta2"}
+      {:ldclient, github: "launchdarkly/erlang-server-sdk", tag: "1.0.0-beta4"}
     ]
   end
 end
