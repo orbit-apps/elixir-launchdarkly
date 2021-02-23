@@ -13,24 +13,19 @@ jobs:
         elixir: [1.9.4, 1.10.0]
 
     steps:
-      - uses: actions/checkout@v1.0.0
+      - uses: actions/checkout@v2
 
       - name: Cache dialyzer plts
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: priv/plts
           key: ${{runner.os}}-${{matrix.otp}}-${{matrix.elixir}}-plts
-
-      - name: Cache deps
-        uses: actions/cache@v1
-        with:
-          path: deps
-          key: ${{hashFiles('mix.lock')}}
 
       - uses: erlef/setup-elixir@v1
         with:
           otp-version: ${{matrix.otp}}
           elixir-version: ${{matrix.elixir}}
+
       - name: Deps get
         run: mix deps.get
       - name: Check Credo
