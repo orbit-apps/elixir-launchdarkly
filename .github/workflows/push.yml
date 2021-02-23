@@ -9,8 +9,8 @@ jobs:
 
     strategy:
       matrix:
-        otp: [22.2, 23.0.3]
-        elixir: [1.9.4, 1.10.0]
+        otp: [22.2, 23.2.1]
+        elixir: [1.10.0, 1.11.3]
 
     steps:
       - uses: actions/checkout@v2
