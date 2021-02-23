@@ -3,9 +3,9 @@ defmodule ExLaunchDarkly do
   Documentation for ExLaunchDarkly.
   """
 
-  require ExLaunchDarkly.App
-
   alias ExLaunchDarkly.User
+
+  require ExLaunchDarkly.App
 
   @type result_value() :: :ldclient_eval.result_value()
 
