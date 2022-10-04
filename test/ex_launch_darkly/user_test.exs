@@ -54,14 +54,14 @@ defmodule ExLaunchDarkly.UserTest do
     test "it scrubs everything when passed :all", %{user: user} do
       {user, keys} = user |> User.set(:last_name, "Bonk") |> User.scrub(:all)
       assert user == %{key: @raw_user.key}
-      assert keys == ["last_name", "email"]
+      assert keys == ["lastName", "email"]
     end
 
     test "it scrubs specific keys", %{user: user} do
       last_name = "Bonk"
       {user, keys} = user |> User.set(:last_name, last_name) |> User.scrub([:email])
       assert user == %{key: @raw_user.key, last_name: last_name}
-      assert keys == [:email]
+      assert keys == ["email"]
     end
   end
 end
