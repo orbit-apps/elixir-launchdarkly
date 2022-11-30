@@ -17,11 +17,25 @@ end
 Start your connection to LaunchDarkly on Application start.
 
 ```elixir
-ExLaunchDarkly.App.start(application.fetch_env!(:your_application, :launchdarkly_api_key))
+ExLaunchDarkly.App.start(Application.fetch_env!(:your_application, :launchdarkly_api_key))
 ```
 
 Retrieve a variation.
 
 ```elixir
 ExLaunchDarkly.variation("Some-Flag", ExLaunchDarkly.User.new("SomeUser"), false)
+```
+
+## Testing
+
+You can configure LaunchDarkly to only use a [test data source](https://docs.launchdarkly.com/sdk/features/test-data-sources#erlang):
+```elixir
+ExLaunchDarkly.App.start(
+  "fake-key",
+  %{
+    datasource: :testdata,
+    send_events: false,
+    feature_store: :ldclient_storage_map
+  }
+)
 ```
