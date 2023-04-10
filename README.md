@@ -32,6 +32,7 @@ You can configure LaunchDarkly to only use a [test data source](https://docs.lau
 ```elixir
 ExLaunchDarkly.App.start(
   "fake-key",
+  :default,
   %{
     datasource: :testdata,
     send_events: false,
