@@ -31,7 +31,7 @@ defmodule ExLaunchDarkly.MixProject do
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       # Everything else
-      {:ldclient, "~> 2.0", hex: "launchdarkly_server_sdk"}
+      {:ldclient, "~> 3.1", hex: "launchdarkly_server_sdk"}
     ]
   end
 end
