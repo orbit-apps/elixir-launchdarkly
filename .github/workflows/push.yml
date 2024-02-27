@@ -7,11 +7,6 @@ jobs:
     env:
       MIX_ENV: test
 
-    strategy:
-      matrix:
-        otp: [24.3.4.10, 25.3]
-        elixir: [1.13.4, 1.14.4]
-
     steps:
       - uses: actions/checkout@v4
 
@@ -19,12 +14,12 @@ jobs:
         uses: actions/cache@v4.0.0
         with:
           path: priv/plts
-          key: ${{runner.os}}-${{matrix.otp}}-${{matrix.elixir}}-plts
+          key: ${{runner.os}}-${{hashFiles('**/.tool-versions')}}-plts
 
       - uses: erlef/setup-elixir@v1
         with:
-          otp-version: ${{matrix.otp}}
-          elixir-version: ${{matrix.elixir}}
+          version-file: ".tool-versions"
+          version-type: "strict"
 
       - name: Deps get
         run: mix deps.get
