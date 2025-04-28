@@ -7,7 +7,7 @@ defmodule ExLaunchDarkly.MixProject do
     [
       app: :ex_launch_darkly,
       version: @version,
-      elixir: "~> 1.14",
+      elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [
