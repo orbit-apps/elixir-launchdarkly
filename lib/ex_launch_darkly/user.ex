@@ -16,10 +16,10 @@ defmodule ExLaunchDarkly.User do
   @type attribute() :: :ldclient_user.attribute()
 
   @spec new(String.t()) :: t()
-  def new(key), do: :ldclient_user.new(key)
+  def new(key) when is_binary(key), do: :ldclient_user.new(key)
 
   @spec new_from_map(map()) :: t()
-  def new_from_map(user_attributes), do: :ldclient_user.new_from_map(user_attributes)
+  def new_from_map(%{} = user_attributes), do: :ldclient_user.new_from_map(user_attributes)
 
   @spec get(t(), attribute()) :: t()
   def get(user, attribute), do: :ldclient_user.get(attribute, user)
@@ -28,9 +28,11 @@ defmodule ExLaunchDarkly.User do
   def set(user, attribute, value), do: :ldclient_user.set(attribute, value, user)
 
   @spec set_private_attribute_names(t(), list(attribute())) :: t()
-  def set_private_attribute_names(user, attribute_names),
+  def set_private_attribute_names(user, attribute_names) when is_list(attribute_names),
     do: :ldclient_user.set_private_attribute_names(attribute_names, user)
 
-  @spec scrub(t(), list(attribute()) | :all) :: {t(), list(attribute())}
-  def scrub(user, attribute_names), do: :ldclient_user.scrub(user, attribute_names)
+  @spec scrub(t(), :all) :: {t(), list(attribute())}
+  @spec scrub(t(), list(attribute())) :: {t(), list(attribute())}
+  def scrub(user, attribute_names) when is_list(attribute_names) or attribute_names == :all,
+    do: :ldclient_user.scrub(user, attribute_names)
 end
