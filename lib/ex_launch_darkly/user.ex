@@ -4,7 +4,7 @@ defmodule ExLaunchDarkly.User do
 
   Usage
 
-  ```
+  ```elixir
   user = User.new("a-slug")
   # => %{key: "a-slug"}
 
@@ -13,10 +13,13 @@ defmodule ExLaunchDarkly.User do
   ```
   """
   @type t() :: :ldclient_user.user()
+  @type key() :: :ldclient_user.key()
   @type attribute() :: :ldclient_user.attribute()
 
-  @spec new(String.t()) :: t()
-  def new(key) when is_binary(key), do: :ldclient_user.new(key)
+  defguard is_user_key(key) when is_binary(key) or key == :null
+
+  @spec new(key()) :: t()
+  def new(key) when is_user_key(key), do: :ldclient_user.new(key)
 
   @spec new_from_map(map()) :: t()
   def new_from_map(%{} = user_attributes), do: :ldclient_user.new_from_map(user_attributes)
