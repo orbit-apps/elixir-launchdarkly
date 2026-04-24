@@ -28,19 +28,37 @@ defmodule ExLaunchDarkly.TestData do
 
   @spec set(String.t(), Variation.value(), String.t()) :: :ok
   def set(flag, value, user)
-      when is_binary(flag) and is_binary(user) and is_variation_value(value) do
+      when is_binary(flag) and is_binary(user) and is_boolean(value) do
     {:ok, ld_flag} = :ldclient_testdata.flag(flag)
     user_variation = :ldclient_flagbuilder.variation_for_context(value, "user", user, ld_flag)
     ld_flag = :ldclient_flagbuilder.fallthrough_variation(false, user_variation)
     :ldclient_testdata.update(ld_flag)
   end
 
+  def set(flag, value, user)
+      when is_binary(flag) and is_binary(user) and is_variation_value(value) do
+    {:ok, ld_flag} = :ldclient_testdata.flag(flag)
+
+    ld_flag = :ldclient_flagbuilder.variations([value], ld_flag)
+    ld_flag = :ldclient_flagbuilder.variation_for_context(0, "user", user, ld_flag)
+    ld_flag = :ldclient_flagbuilder.fallthrough_variation(0, ld_flag)
+    :ldclient_testdata.update(ld_flag)
+  end
+
   @spec set_all(String.t(), Variation.value()) :: :ok
-  def set_all(flag, value) when is_binary(flag) and is_variation_value(value) do
+  def set_all(flag, value) when is_binary(flag) and is_boolean(value) do
     {:ok, ld_flag} = :ldclient_testdata.flag(flag)
 
     value
     |> :ldclient_flagbuilder.variation_for_all(ld_flag)
+    |> :ldclient_testdata.update()
+  end
+
+  def set_all(flag, value) when is_binary(flag) and is_variation_value(value) do
+    {:ok, ld_flag} = :ldclient_testdata.flag(flag)
+
+    value
+    |> :ldclient_flagbuilder.value_for_all(ld_flag)
     |> :ldclient_testdata.update()
   end
 end
